@@ -1,6 +1,8 @@
 // const express = require('express');   // CommonJS
 import express from 'express';           // ESModule
 
+import usersRoute from './routes/users.routes.js';
+
 const app = express();
 
 // Definiendo 1 endpoint (ruta de entrada)
@@ -8,30 +10,8 @@ app.get('/health', (req, res) => {
     res.json({ msg: 'Servidor de SenaStore Funcionando!' });
 });
 
-// Obtener todos usuarios
-app.get('/users', (req, res) => {
-    res.json({ msg: 'Listar todos los usuarios' });
-});
-
-// Crear un usuario
-app.post('/users', (req, res) => {
-    res.json({ msg: 'Registra usuario' });
-});
-
-// Actualizar totalmente
-app.put('/users', (req, res) => {
-    res.json({ msg: 'Actualizar todos las propiedades de un usuario' });
-});
-
-// Actualizar parcialmente
-app.patch('/users', (req, res) => {
-    res.json({ msg: 'Actualizar una o mas propiedades del usuario' });
-});
-
-// Eliminar un usuario
-app.delete('/users', (req, res) => {
-    res.json({ msg: 'Elimina un usuario' });
-});
+// Enlazar todas las rutas de la aplicacion
+app.use( '/api/users', usersRoute );
 
 
 // Iniciar el servidor
