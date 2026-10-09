@@ -1,3 +1,4 @@
+// Controlador define quien hace una accion especifica
 const createUser = (req, res) => {
     res.json({ msg: 'Registra usuario' });
 }
