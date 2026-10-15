@@ -2,7 +2,9 @@
 import express from 'express';           // ESModule
 
 import conexion from './config/mongo.config.js';  // Conexion a la base de datos
+
 import usersRoute from './routes/users.routes.js';
+import categoriesRoute from './routes/categories.routes.js';
 
 const app = express();      // Instancia de Express
 
@@ -18,6 +20,8 @@ app.get('/health', (req, res) => {
 
 // Enlazar todas las rutas de la aplicacion
 app.use( '/api/users', usersRoute );
+app.use( '/api/categories', categoriesRoute );
+
 
 
 // Iniciar el servidor

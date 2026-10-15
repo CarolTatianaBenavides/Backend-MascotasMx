@@ -2,14 +2,22 @@ import { dbCreateUser } from "../services/users.services.js";
 
 // Controlador define quien hace una accion especifica
 const createUser = async (req, res) => {
-    // Obtenemos el usuario desde el cuerpo de la peticion (request)
-    const user = req.body;
-
-    // Conecta con el servicio para crear un usuario en la base de datos
-    const newUser = await dbCreateUser(user);     // Llega como una Promesa (Promise) y se resuelve con await
-
-    // Respuesta al cliente
-    res.json({ msg: 'Registra usuario', user: newUser });
+    try{
+        // Obtenemos el usuario desde el cuerpo de la peticion (request)
+        const user = req.body;
+    
+        // Conecta con el servicio para crear un usuario en la base de datos
+        const newUser = await dbCreateUser(user);     // Llega como una Promesa (Promise) y se resuelve con await
+    
+        // Respuesta al cliente
+        res.json({ msg: 'Registra usuario', user: newUser });
+    }
+    catch (error) {
+        console.error( error );
+        res.json({
+            msg: 'Error al registrar usuario'
+        });
+    }
 }
 
 const getUsers = ( req, res ) => {
