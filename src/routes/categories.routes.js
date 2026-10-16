@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCategory, getCategories } from "../controllers/categories.controllers.js";
+import { createCategory, deleteCategory, getCategories } from "../controllers/categories.controllers.js";
 
 
 // Crea una instancia de las rutas de Express
@@ -8,7 +8,7 @@ const router = Router();
 // Define las rutas para las categorias
 router.post( '/', createCategory );
 router.get( '/', getCategories );
-
+router.delete( '/:id', deleteCategory );
 
 
 // Exportar las rutas definidas en este archivo
