@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { createCategory } from "../controllers/categories.controllers.js";
+import { createCategory, getCategories } from "../controllers/categories.controllers.js";
+
 
 // Crea una instancia de las rutas de Express
 const router = Router();    
 
 // Define las rutas para las categorias
 router.post( '/', createCategory );
+router.get( '/', getCategories );
 
 
 

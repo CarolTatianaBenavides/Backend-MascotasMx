@@ -9,10 +9,17 @@ const CategorySchema = new Schema(
             unique: true,
             minlength: 5
         },
-        description: String
+        description: String,
+        status: {
+            type: Boolean,
+            default: true
+        }
     },
     // Configuraciones de la estructura de datos
-    {}
+    {
+        timestamps: true,    // Agrega los campos createdAt, updatedAt automaticamente (los actualiza automaticamente) 
+        versionKey: false    // Elimina la propiedad de versionamiento __v del Schema
+    }
 );
 
 // Definir el model a partir de la estructura del documento
