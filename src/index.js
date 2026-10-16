@@ -6,6 +6,8 @@ import conexion from './config/mongo.config.js';  // Conexion a la base de datos
 import usersRoute from './routes/users.routes.js';
 import categoriesRoute from './routes/categories.routes.js';
 
+const port = process.env.PORT || 3001;
+
 const app = express();      // Instancia de Express
 
 conexion();     // Ejecuta la conexion a la base de datos
@@ -26,7 +28,6 @@ app.use( '/api/categories', categoriesRoute );
 
 
 // Iniciar el servidor
-const port = 3000;
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });
