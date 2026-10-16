@@ -24,6 +24,7 @@ app.use( '/api/categories', categoriesRoute );
 
 
 
+
 // Iniciar el servidor
 const port = 3000;
 app.listen(port, () => {
