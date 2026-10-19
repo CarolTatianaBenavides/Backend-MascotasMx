@@ -1,0 +1,19 @@
+info:
+  name: Crear Categoria
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/categories"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "name": "Tecnologia",
+        "description": "Articulos y dispositivos tecnologicos",
+        "status": true
+      }

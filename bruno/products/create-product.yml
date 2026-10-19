@@ -1,0 +1,22 @@
+info:
+  name: Crear Producto
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/products"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "name": "Teclado Mecanico RGB",
+        "description": "Teclado mecanico para desarrollo y gaming",
+        "price": 120000,
+        "stock": 15,
+        "state": "disponible",
+        "createdBy": "AdminSena"
+      }

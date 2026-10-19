@@ -1,0 +1,22 @@
+info:
+  name: Actualizar Categoria
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/api/categories/:id"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: id
+      value: ID_AQUI
+      type: path
+  body:
+    type: json
+    data: |
+      {
+        "name": "Tecnologia y Electronica",
+        "description": "Articulos tecnologicos y electronicos actualizados"
+      }

@@ -1,0 +1,4 @@
+opencollection: 1.0.0
+info:
+  name: SenaStore API
+  summary: Colección de peticiones Bruno para los endpoints de SenaStore

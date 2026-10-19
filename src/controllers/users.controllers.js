@@ -1,46 +1,106 @@
-import { dbCreateUser } from "../services/users.services.js";
+import { dbCreateUser, dbDeleteUser, dbGetUsers, dbGetUser, dbUpdateUser } from "../services/users.services.js";
 
-// Controlador define quien hace una accion especifica
-const createUser = async (req, res) => {
-    try{
-        // Obtenemos el usuario desde el cuerpo de la peticion (request)
-        const user = req.body;
+const createUser = async ( req, res ) => {
+    try {
+        // Extrae los datos del cuerpo de la peticion
+        const inputData = req.body;
     
-        // Conecta con el servicio para crear un usuario en la base de datos
-        const newUser = await dbCreateUser(user);     // Llega como una Promesa (Promise) y se resuelve con await
+        // Usar el servicio para registrar
+        const data = await dbCreateUser( inputData );
     
-        // Respuesta al cliente
-        res.json({ msg: 'Registra usuario', user: newUser });
+        res.json({ msg: 'Registra usuario', data: data });
     }
     catch (error) {
-        console.error( error );
+        console.error(error);
+
+        res.json({ msg: 'No se pudo registrar el usuario' });
+    }
+}
+
+const getUsers = async ( req, res ) => {
+    try {
+        const data = await dbGetUsers();
+    
         res.json({
-            msg: 'Error al registrar usuario'
+            msg: 'Lista de Usuarios',
+            data: data
+        });
+    } 
+    catch (error) {
+        console.error( error );
+
+        res.json({
+            msg: 'No ha podido obtener los usuarios activos'
         });
     }
 }
 
-const getUsers = ( req, res ) => {
-    res.json({ msg: 'Registra usuario' });
+const deleteUser = async ( req, res ) => {
+    try {
+        const id = req.params.id;
+    
+        const data = await dbDeleteUser(id);
+    
+        res.json({
+            msg: 'Elimina un usuario',
+            data: data
+        });
+    } 
+    catch (error) {
+        console.error( error );
+        
+        res.json({
+            msg: 'No se ha podido eliminar el usuario'
+        });
+    }
 }
 
-const updateUserPatch = ( req, res ) => {
-    res.json({ msg: 'Actualiza usuario (Patch)' });
+const updateUser = async ( req, res ) => {
+    try {
+        const id = req.params.id;
+        const inputData = req.body;
+    
+        const data = await dbUpdateUser( id, inputData );   // <--- Suceptible de generar una Exception
+    
+        res.json({
+            msg: 'Usuario Actualizado',
+            data: data
+        });
+    }
+    catch( error ){
+        console.error( error );
+
+        res.json({
+            msg: 'No se ha podido actualizar el usuario'
+        });
+    }
 }
 
-const updateUserPut = ( req, res ) => {
-    res.json({ msg: 'Actualiza usuario (Put)' });
-}
+const getUser = async ( req, res ) => {
+    try {
+        const id = req.params.id;
 
-const deleteUser = ( req, res ) => {
-    res.json({ msg: 'Elimina un usuario' });
+        const data = await dbGetUser( id );
+
+        res.json({
+            msg: 'Obtiene un usuario',
+            data: data
+        });
+    } 
+    catch (error) {
+        console.error( error );
+
+        res.json({
+            msg: 'No se pudo obtener usuario por ID'
+        });
+    }
 }
 
 
 export {
     createUser,
     getUsers,
-    updateUserPatch,
-    updateUserPut,
-    deleteUser
+    deleteUser,
+    updateUser,
+    getUser
 }

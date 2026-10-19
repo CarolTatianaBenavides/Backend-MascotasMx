@@ -31,13 +31,14 @@ const UserSchema = new Schema(
     },
     // Opciones del esquema
     {
-        timestamps: true      // Crea automaticamente createdAt, updatedAt
+        timestamps: true,     // Crea automaticamente createdAt, updatedAt
+        versionKey: false     // Elimina la propiedad de versionamiento __v del Schema
     }
 );
 
 // Parte 2: Definir el modelo. Dicho modelo esta atado al nombre de documento
 const UserModel = model(
-    'User',             // Nombre de la colección (pluraliza automáticamente)
+    'user',             // Nombre de la colección (pluraliza automáticamente)
     UserSchema          // Nombre del esquema que define la estructura de los documentos de la colección
 );
 

@@ -1,0 +1,21 @@
+info:
+  name: Crear Usuario
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/users"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "name": "Juan Perez",
+        "email": "juan.perez@example.com",
+        "password": "password123",
+        "role": "CUSTOMER",
+        "status": true
+      }

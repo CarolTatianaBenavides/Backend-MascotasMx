@@ -1,0 +1,15 @@
+info:
+  name: Eliminar Categoria
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/api/categories/:id"
+  headers:
+    - name: Accept
+      value: application/json
+  params:
+    - name: id
+      value: ID_AQUI
+      type: path

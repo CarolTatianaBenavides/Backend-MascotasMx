@@ -5,6 +5,7 @@ import conexion from './config/mongo.config.js';  // Conexion a la base de datos
 
 import usersRoute from './routes/users.routes.js';
 import categoriesRoute from './routes/categories.routes.js';
+import productsRoute from './routes/products.routes.js';
 
 const port = process.env.PORT || 3001;
 
@@ -23,7 +24,7 @@ app.get('/health', (req, res) => {
 // Enlazar todas las rutas de la aplicacion
 app.use( '/api/users', usersRoute );
 app.use( '/api/categories', categoriesRoute );
-
+app.use( '/api/products', productsRoute );
 
 
 
