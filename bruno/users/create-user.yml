@@ -15,7 +15,7 @@ http:
       {
         "name": "Juan Perez",
         "email": "juan.perez@example.com",
-        "password": "password123",
+        "password": "Password123*",
         "role": "CUSTOMER",
         "status": true
       }

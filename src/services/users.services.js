@@ -61,7 +61,10 @@ const dbUpdateUser = async ( id, userUpdated ) => {
     return await UserModel.findOneAndUpdate(
         { _id: id },            // Objeto de consulta para buscar el documento que deseamos actualizar
         userUpdated,            // El objeto con los datos del Documento que deseamos actualizar
-        { new: true }           // Configuracion para que retorne el documento actualizado
+        {
+            new: true,          // Retorna el documento ya actualizado
+            runValidators: true // Ejecuta las validaciones definidas en el Schema de Mongoose al actualizar
+        }
     );
 }
 
