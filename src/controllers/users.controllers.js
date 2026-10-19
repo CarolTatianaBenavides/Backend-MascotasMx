@@ -17,20 +17,33 @@ const createUser = async ( req, res ) => {
     }
 }
 
+// Controlador para listar usuarios con paginación y filtro de status
 const getUsers = async ( req, res ) => {
     try {
-        const data = await dbGetUsers();
+        // Paso 1: Extraer los query parameters de la URL
+        // Ejemplos:
+        //   - /api/users?status=true   (usuarios activos)
+        //   - /api/users?status=false  (usuarios inactivos)
+        //   - /api/users?status=all    (todos los usuarios)
+        //   - /api/users?page=1&limit=10&status=all
+        const { page = 1, limit = 10, status = 'true' } = req.query;
+
+        // Paso 2: Invocar el servicio de consulta enviando paginación y filtro de estado
+        const data = await dbGetUsers( page, limit, status );
     
+        // Paso 3: Retornar la respuesta exitosa en formato JSON con la metadata y la lista
         res.json({
             msg: 'Lista de Usuarios',
             data: data
         });
     } 
     catch (error) {
+        // En caso de excepción, imprimir el error en consola para depuración en el servidor
         console.error( error );
 
+        // Responder al cliente con un mensaje de error descriptivo
         res.json({
-            msg: 'No ha podido obtener los usuarios activos'
+            msg: 'No ha podido obtener los usuarios'
         });
     }
 }
