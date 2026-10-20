@@ -13,7 +13,20 @@ const createProduct = async ( req, res ) => {
     catch (error) {
         console.error(error);
 
+        if( error.name == 'ValidationError' ) {
+            const errors = {};
+
+            // Iterar los errores para extraer el nombre de la propiedad y el error especifico
+            for( const field in error.errors ) {
+                errors[field] = error.errors[field].message;
+            }
+
+            res.json({ errors });   // Retorna un error especifico de campo
+        }
+
+        // Error Generico
         res.json({ msg: 'No se pudo registrar el producto' });
+
     }
 }
 

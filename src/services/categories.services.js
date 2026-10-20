@@ -5,7 +5,7 @@ const dbCreateCategory = async ( newCategory ) => {
 }
 
 const dbGetCategories = async () => {
-    return await CategoryModel.find({ status: true });   // Consultar todos las categorias registradas
+    return await CategoryModel.find({ status: true }).populate('createdBy');   // Consultar todos las categorias registradas
 }
 
 const dbDeleteCategory = async ( id ) => {

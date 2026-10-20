@@ -5,7 +5,7 @@ const dbCreateProduct = async ( newProduct ) => {
 }
 
 const dbGetProducts = async () => {
-    return await ProductModel.find();   // Consultar todos los productos registrados
+    return await ProductModel.find().populate(['createdBy', 'category']);   // Consultar todos los productos registrados
 }
 
 const dbDeleteProduct = async ( id ) => {

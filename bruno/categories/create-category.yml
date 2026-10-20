@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{baseUrl}}/api/categories"
+  url: http://localhost:3000/api/categories
   headers:
     - name: Content-Type
       value: application/json
@@ -15,5 +15,13 @@ http:
       {
         "name": "Tecnologia",
         "description": "Articulos y dispositivos tecnologicos",
-        "status": true
+        "status": true,
+        "createdBy": "6ad7975c3f449dd0fdbcf258"
       }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

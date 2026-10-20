@@ -5,7 +5,14 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/api/products"
+  url: http://localhost:3000/api/products
   headers:
     - name: Accept
       value: application/json
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

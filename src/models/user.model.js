@@ -35,16 +35,16 @@ const UserSchema = new Schema(
             unique: true,
             trim: true,
             lowercase: true,
-            match: [emailRegex, 'El correo electrónico no tiene un formato válido']
+            // match: [emailRegex, 'El correo electrónico no tiene un formato válido']
         },
         password: {
             type: String,
             required: [true, 'La contraseña es obligatoria'],
             trim: true,
-            match: [
-                passwordRegex,
-                'La contraseña debe tener entre 7 y 24 caracteres, incluir al menos una mayúscula, una minúscula, un número y un símbolo'
-            ]
+            // match: [
+            //     passwordRegex,
+            //     'La contraseña debe tener entre 7 y 24 caracteres, incluir al menos una mayúscula, una minúscula, un número y un símbolo'
+            // ]
         },
         role: {
             type: String,

@@ -4,23 +4,23 @@ import { Schema, model } from 'mongoose';
 const ProductSchema = new Schema({
     // Nombre producto
     name: {
-        minlength: 5,
-        required: true,
-        trim: true,
+        minlength: [ 5, 'El nombre del producto debe tener al menos 5 caracteres' ],    //  Regla
+        required: [ true, 'El nombre del producto es obligatorio' ],                    //  Regla
+        trim: true,         //  Transformacion
         type: String,
-        unique: true
+        unique: [ true, 'El nombre de este producto ya esta registrado' ]        // Regla
     },
     description: String,        // Descripcion del Producto
     // Precio del Producto
     price: {
         type: Number,
-        min: 0,
+        min: [ 0, 'El precio no puede ser negativo' ],
         default: 0
     },
     // Inventario del Producto
     stock: {
         type: Number,
-        min: 0,
+        min: [ 0, 'El inventario no puede ser negativo' ],
         default: 1
     },
     // Disponibilidad o estado
@@ -34,10 +34,16 @@ const ProductSchema = new Schema({
         ],
         default: 'disponible'  
     },
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'category',
+        required: [ true, 'El ID de la categoria es obligatorio' ]
+    },
     // Quien registro el producto
     createdBy: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: [ true, 'El ID del usuario que registra es obligatorio' ]
     }
 },{
     timestamps: true,

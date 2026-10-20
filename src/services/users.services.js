@@ -36,7 +36,8 @@ const dbGetUsers = async ( page = 1, limit = 10, status = 'true' ) => {
         // 4.1: Consulta los documentos aplicando el filtro, skip (saltar) y limit (cantidad máxima)
         UserModel.find( filter )
             .skip( skip )
-            .limit( limitNumber ),
+            .limit( limitNumber )
+            .populate('createdBy'),
 
         // 4.2: Cuenta el total de documentos que coinciden exactamente con el filtro aplicado
         UserModel.countDocuments( filter )

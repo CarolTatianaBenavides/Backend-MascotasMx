@@ -5,7 +5,14 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/api/categories"
+  url: http://localhost:3000/api/categories
   headers:
     - name: Accept
       value: application/json
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
