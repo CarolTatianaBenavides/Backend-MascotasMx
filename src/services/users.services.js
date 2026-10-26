@@ -74,11 +74,17 @@ const dbGetUser = async ( id ) => {
     return await UserModel.findOne({ _id: id });
 }
 
+// email: jcarlosj@correo.co
+const dbGetUserByEmail = async ( email ) => {
+    return await UserModel.findOne({ email: email });
+}
+
 
 export {
     dbCreateUser,
     dbGetUsers,
     dbDeleteUser,
     dbUpdateUser,
-    dbGetUser
+    dbGetUser,
+    dbGetUserByEmail
 }

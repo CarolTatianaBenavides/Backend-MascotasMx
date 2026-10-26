@@ -6,7 +6,7 @@ import { createUser, deleteUser, getUsers, getUser, updateUser } from "../contro
 const router = Router();    
 
 // Define las rutas para los usuarios
-router.post( '/', createUser );
+router.post( '/', createUser );         // 1. Registro Privado (Role: Administrador), va a poder asignar el rol
 
 // Ruta GET con soporte para paginación y filtro de estado mediante Query Strings
 // Ejemplos de consumo:

@@ -1,0 +1,27 @@
+info:
+  name: Registro Publico Usuario
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/api/auth/register
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Dilan",
+        "email": "dilan@correo.co",
+        "password": "123456789",
+        "role": "SELLER",
+        "status": true,
+        "createdBy": "6ad79c0a9f063bd26d7f0c2b"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
