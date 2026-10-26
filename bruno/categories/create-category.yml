@@ -13,7 +13,7 @@ http:
     type: json
     data: |
       {
-        "name": "Tecnologia",
+        "name": "Salud",
         "description": "Articulos y dispositivos tecnologicos",
         "status": true,
         "createdBy": "6ad7975c3f449dd0fdbcf258"

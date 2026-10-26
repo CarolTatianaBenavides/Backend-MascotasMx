@@ -13,3 +13,10 @@ http:
     - name: id
       value: ID_AQUI
       type: path
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true

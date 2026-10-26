@@ -90,9 +90,9 @@ const updateProduct = async ( req, res ) => {
 }
 
 const getProduct = async ( req, res ) => {
-    try {
-        const id = req.params.id;
+    const id = req.params.id;
 
+    try {
         const data = await dbGetProduct( id );
 
         res.json({
@@ -103,7 +103,15 @@ const getProduct = async ( req, res ) => {
     catch (error) {
         console.error( error );
 
-        res.json({
+        // Verificar formato del ID (ObjectId) en caso de que se envie un ID en el body
+        if( error.name === 'CastError' ) {
+            return res.status(400).json({
+                msg: 'Error en el formato del ID',
+                [error.path]: `El identificador ${ error.value } no tiene el formato valido que requiere MongoDB`
+            });
+        }
+
+        res.status(500).json({
             msg: 'No se pudo obtener producto por ID'
         });
     }
