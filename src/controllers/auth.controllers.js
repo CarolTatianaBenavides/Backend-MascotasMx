@@ -1,3 +1,5 @@
+import { verifyPassword } from "../helpers/bcrypt.helpers.js";
+import { generateToken } from "../helpers/jwt.helpers.js";
 import { dbGetUserByEmail } from "../services/users.services.js";
 
 const loginUser = async ( req, res ) => {
@@ -30,23 +32,60 @@ const loginUser = async ( req, res ) => {
     }
 
     // Paso 3: Verificar si la contraseña es valida
-    // TODO: Encriptar la contraseña antes de validarla (createUser, dbCreateUser)
+    const isValid = verifyPassword( inputData.password, userFound.password )
+
+    if( ! isValid ) {
+        res.json({
+            msg: 'El password es invalido'
+        });
+    }
 
     // Paso 4: Generar el Token (Tarjeta que presento que Autentica y Autoriza)
+    const payload = {
+        _id: userFound._id,
+        name: userFound.name,
+        email: userFound.email,
+        role: userFound.role,
+        status: userFound.status
+    }
 
-    // Paso 5: Responder al cliente (Enviar el Token, IMPORTANTE: No devolver el password)
+    const token = generateToken( payload );
 
+    // Paso 5: Eliminar el campo password) del objeto
+    const jsonObj = userFound.toObject();   // Convertir un BJSON a un Objeto de JavaScript
+
+    // Eliminar propiedades no deseadas
+    delete jsonObj.password;
 
     res.json({
-        msg: 'Login de usuario'
+        msg: 'Login de usuario',
+        token: token,
+        data: jsonObj
     });
 }
 
 
 const verifyAuthenticate = ( req, res ) => {
+    const data = req.holaatodos;
+    console.log( ':::::::', data );
+
+    console.log('Soy el controlador verifyAuthenticate');
+
     res.json({
         msg: 'Verifica y actualiza las credenciales del usuario'
     });
+
+
+    // // 4. Generar un nuevo Token (OJO: Debe tener las mismas propiedades el payload original)
+    // const newPayload = {
+    //     _id: userFound._id,
+    //     name: userFound.name,
+    //     email: userFound.email,
+    //     role: userFound.role,
+    //     status: userFound.status
+    // }
+
+    // const token = generateToken( newPayload );
 }
 
 

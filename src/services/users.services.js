@@ -75,8 +75,8 @@ const dbGetUser = async ( id ) => {
 }
 
 // email: jcarlosj@correo.co
-const dbGetUserByEmail = async ( email ) => {
-    return await UserModel.findOne({ email: email });
+const dbGetUserByEmail = async ( email, status = true ) => {
+    return await UserModel.findOne({ email: email, status: status });
 }
 
 

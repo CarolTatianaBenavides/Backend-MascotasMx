@@ -1,10 +1,14 @@
 import { dbCreateUser, dbDeleteUser, dbGetUsers, dbGetUser, dbUpdateUser } from "../services/users.services.js";
 import handleMongooseError from "../helpers/handle-mongoose-error.helper.js";
+import { generatePassword } from "../helpers/bcrypt.helpers.js";
 
 const createUser = async (req, res) => {
     try {
         // Extrae los datos del cuerpo de la petición
         const inputData = req.body;
+
+        // Encripte la contraseña antes de guardarla en la base de datos (opcional, pero recomendado)
+        inputData.password = generatePassword(inputData.password);
 
         // Usar el servicio para registrar (Mongoose valida automáticamente contra UserSchema)
         const data = await dbCreateUser(inputData);
